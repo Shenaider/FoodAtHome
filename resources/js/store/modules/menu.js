@@ -66,55 +66,6 @@ const actions = {
       store.commit('SET_FATHER_ACTIVE_MENU', '/accounts')
     }
   },
-  CHECK_MENU_CREATION: function (store, data) {
-    return new Promise(function (resolve, reject) {
-      /**
-       * Verifies if the object already exists in menu or not with the same id
-       * **/
-      let menuItem = _.findIndex(state.routeList, function (routerVal) { // eslint-disable-line no-undef
-        return routerVal.route.params.id == data.id && routerVal.father === data.father // eslint-disable-line eqeqeq
-      })
-      if (menuItem === -1) {
-        let newMenu = {
-          params: {
-            id: data.id
-          },
-          path: data.father + '/' + data.id,
-          father: data.father,
-          index: data.father + '/' + data.id,
-          permission: data.permission,
-          route: {
-            name: data.routeName,
-            params: {
-              id: data.id
-            }
-          },
-          description: data.description,
-          name: data.name,
-          custom: true
-        }
-        if (data.name !== undefined) {
-          newMenu.route.params.name = data.name
-        }
-        store.commit('ADD_MENU', newMenu)
-        resolve()
-      }
-      state.routeList[menuItem].index = data.father + '/' + data.id
-      state.routeList[menuItem].path = data.father + '/' + data.id
-      store.commit('UPDATE_ROUTES', state.routeList)
-      resolve(menuItem)
-    }).then(function (response) {
-      if (response === undefined) {
-        store.commit('SET_ACTIVE_MENU', {
-          index: data.father + '/' + data.id
-        })
-      } else {
-        store.commit('SET_ACTIVE_MENU', {
-          index: state.routeList[response].index
-        })
-      }
-    })
-  },
   SET_LOCAL_ROUTES: function (store, data) {
     return new Promise(function (resolve, reject) {
       /****
@@ -128,7 +79,7 @@ const actions = {
         let matches = routesLocal.path.match(/\d/)
         if (matches && store.state.routeList !== null) {
           let routeToCopy = _.find(store.state.routeList, function (n) { return n.path === routesLocal.path }) // eslint-disable-line no-undef
-          
+
           /****
            * If it doesn't exist it will be loaded to the menu
            * */
@@ -192,7 +143,7 @@ const actions = {
                     }
                   }
                 }
-                
+
                 if (routeToCopy.children !== undefined && foundChildren && childRouteToCopy !== null) {
                   if (childRouteToCopy.pathChildren !== '/groups') {
                     routesLocal.father = childRouteToCopy.pathChildren
@@ -252,7 +203,7 @@ const actions = {
      *   IT MUST HAVE ID BECAUSE WHEN COMPARING IF EXISTS ANY ITEM WITH THE NEW ID IT GIVES UNDEFINED
      *   ERROR BECAUSE CANT COMPARE TO THESE ITEMS
      * */
-    
+
     let routeList = [
       {
         description: 'CRM',
@@ -337,7 +288,7 @@ const actions = {
         }
       }
     ]
-    
+
     store.commit('SET_ROUTES', routeList)
   }
 }

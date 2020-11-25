@@ -9,7 +9,8 @@ import Vuex from 'vuex'
 //import feed from './modules/feed'
 //import generic from './modules/generic'
 //import group from './modules/group'
-//import menu from './modules/menu'
+import menu from './modules/menu'
+import auth from './auth'
 //import person from './modules/person'
 //import quotation from './modules/quotation'
 //import reportAndContact from './modules/report-and-contact'
@@ -17,14 +18,11 @@ import Vuex from 'vuex'
 //import travel from './modules/travel'
 
 Vue.use(Vuex)
-const debug = process.env.NODE_ENV !== 'production'
-const state = {
-  webserviceUrl: process.env.NODE_ENV !== 'production' ? 'http://localhost:58390/Contracts/CrmDataService.svc' : '',
-  websocketUrl: process.env.NODE_ENV !== 'production' ? 'http://localhost:58390/Contracts/CrmDataService.svc' : 'https://webservices.socem.pt:4497/SocemHUBSystem'
-}
+const debug = true
 
 export default new Vuex.Store({
   modules: {
+      auth,
     //account,
     //business,
     //calendar,
@@ -33,13 +31,12 @@ export default new Vuex.Store({
     //feed,
     //generic,
     //group,
-    //menu,
+    menu,
     //person,
     //quotation,
     //reportAndContact,
     //taskAndFutureAction,
-    //travel
+    //travel,
   },
-  state,
   strict: debug
 })

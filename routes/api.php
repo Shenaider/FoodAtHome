@@ -20,9 +20,10 @@ use App\Http\Controllers\Api\UserController;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::get('departments',           [DepartmentController::class, 'index']);
-
+Route::post('/login', 'Auth\AuthController@login');
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/users', 'UserController@index');
+});
 Route::get('users',                 [UserController::class, 'index']);
 Route::get('users/emailavailable',  [UserController::class, 'emailAvailable']);
 Route::get('users/{user}',          [UserController::class, 'show']);

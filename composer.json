@@ -13,6 +13,7 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.0",
+        "laravel/sanctum": "^2.8",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0"
     },
@@ -35,9 +36,7 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "FoodAtHome/app/",
-            "Database\\Factories\\": "FoodAtHome/database/factories/",
-            "Database\\Seeders\\": "FoodAtHome/database/seeders/"
+            "App\\": "app/"
         }
     },
     "autoload-dev": {

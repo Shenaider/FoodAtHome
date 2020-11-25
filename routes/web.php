@@ -14,5 +14,3 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'vue.index');
-
-Route::view('/tictactoe', 'tictactoe.index');

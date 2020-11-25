@@ -16,24 +16,6 @@ export default {
       return JSON.parse(localStorage.getItem(field))
     }
   },
-  /**
-   * Convert File object to base64 string
-   * @param file
-   * @returns {Promise}
-   */
-  convertFileToDataUrl: function (file) {
-    const reader = new FileReader()
-    return new Promise((resolve, reject) => {
-      reader.onerror = () => {
-        reader.abort()
-        reject(new DOMException('Problem parsing input file.'))
-      }
-      reader.onload = () => {
-        resolve(reader.result)
-      }
-      reader.readAsDataURL(file)
-    })
-  },
   checkACL (args) {
     return _.some(args.permissions, function (accessInfo) {
       return accessInfo.ui_tag === args.func && accessInfo[args.type] === 1

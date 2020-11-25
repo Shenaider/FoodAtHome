@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
-use App\Models\Department;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -35,7 +34,6 @@ class UserController extends Controller
     public function create()
     {
         $user = new User;
-        $departments = Department::all();
         return view('users.add', compact('user', 'departments'));
     }
 
@@ -62,8 +60,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $departments = Department::all();
-        return view('users.show', compact('user', 'departments'));
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -74,8 +71,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $departments = Department::all();
-        return view('users.edit', compact('user', 'departments'));
+        return view('users.edit', compact('user'));
     }
 
     /**

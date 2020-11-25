@@ -2,14 +2,18 @@
 
 namespace App\Models;
 
+use App\Traits\Enums;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, HasApiTokens, Notifiable, Enums;
+
+    protected $with = ['profile'];
 
     /**
      * The attributes that are mass assignable.
@@ -21,7 +25,22 @@ class User extends Authenticatable
         'email',
         'password',
         'age',
-        'department_id',
+        'type',
+        'blocked',
+        'photo_url',
+        'logged_at',
+        'available_at',
+        'deleted_at',
+        'address',
+        'phone',
+        'nif',
+    ];
+
+    protected $enumTypes = [
+        'C' => 'Customer',
+        'EC' => 'Employee-Cook',
+        'ED' => 'Employee-Deliveryman',
+        'EM' => 'Employee-Manager'
     ];
 
     /**
@@ -43,8 +62,35 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function department()
+
+    public function type()
     {
-        return $this->belongsTo(Department::class);
+        return $this->morphTo();
+    }
+
+
+    /**
+     * Get the reviews the user has made.
+     */
+    public function orders()
+    {
+        return $this->hasMany('App\Review');
+    }
+
+    public function getHasCustomerProfile()
+    {
+        return $this->type == 'C';
+    }
+    public function getHasDeliveryProfile()
+    {
+        return $this->type == 'ED';
+    }
+    public function getHasManagerProfile()
+    {
+        return $this->type == 'EM';
+    }
+    public function getHasCookProfile()
+    {
+        return $this->type == 'EC';
     }
 }

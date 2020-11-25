@@ -18,12 +18,6 @@ class UserController extends Controller
         } else {
             return UserResource::collection(User::all());
         }
-        /*Caso não se pretenda fazer uso de Eloquent API Resources (https://laravel.com/docs/5.5/eloquent-resources), é possível implementar com esta abordagem:
-        if ($request->has('page')) {
-            return User::with('department')->paginate(5);;
-        } else {
-            return User::with('department')->get();;
-        }*/
     }
 
     public function show($user)
@@ -39,54 +33,18 @@ class UserController extends Controller
         $user->save();
         return response()->json(new UserResource($user), 201);
     }
-    /* SEM StoreUserRequest */
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'name' => 'required|regex:/^[A-Za-záàâãéèêíóôõúçÁÀÂÃÉÈÍÓÔÕÚÇ ]+$/',
-    //         'email' => 'required|email|unique:users',
-    //         'password' => 'required|min:8|confirmed',
-    //         'age' => 'required|integer|min:18|max:75',
-    //         'department_id' => 'required|integer',
-    //     ]);
-    //     $user = new User();
-    //     $user->fill($request->all());
-    //     $user->password = Hash::make($user->password);
-    //     $user->save();
-    //     return response()->json(new UserResource($user), 201);
-    // }
 
     public function update(UpdateUserRequest $request, User $user)
     {
         $user->update($request->validated());
         return new UserResource($user);
     }
-    /* SEM UpdateUserRequest */
-    // public function update(Request $request, $id)
-    // {
-    //     $request->validate([
-    //         'name' => 'required|regex:/^[A-Za-záàâãéèêíóôõúçÁÀÂÃÉÈÍÓÔÕÚÇ ]+$/',
-    //         'email' => 'required|email|unique:users,email,' . $this->user->id,
-    //         'password' => 'nullable|string|min:6|confirmed',
-    //         'age' => 'required|integer|min:18|max:75',
-    //         'department_id' => 'required|integer',
-    //     ]);
-    //     $user = User::findOrFail($id);
-    //     $user->update($request->all());
-    //     return new UserResource($user);
-    // }
 
     public function destroy($user)
     {
         $user->delete();
         return response()->json(null, 204);
     }
-    // public function destroy($id)
-    // {
-    //     $user = User::findOrFail($id);
-    //     $user->delete();
-    //     return response()->json(null, 204);
-    // }
 
 
     public function emailAvailable(Request $request)
