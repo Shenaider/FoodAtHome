@@ -1,9 +1,12 @@
 import Moment from 'moment/moment'
 import Vue from 'vue'
-import Vuelidate from 'vuelidate'
+import Vuelidate from 'vuelidate/src'
 import axios from 'axios'
 
 import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
+
+Vue.use(Vuetify)
 
 import App from './App.vue'
 import './helpers/filters'
@@ -15,23 +18,39 @@ const { times } = require('lodash')
 
 require('./bootstrap')
 
-window.Vue = require('vue')
-
 axios.defaults.withCredentials = true
-axios.defaults.baseURL = 'http://foodathome.test'
 
 
 Vue.use(Moment, 'pt-br')
-Vue.use(Vuetify)
 Vue.use(Vuelidate)
 
 Vue.prototype.$moment = Moment
 Vue.prototype.$helpers = Helper
 
-new Vue({
-    router: Router,
-    Vuetify,
+const app =new Vue({
     render: h => h(App),
+    router: Router,
+    vuetify: new Vuetify({
+        defaultAssets: {
+            font: true,
+            icons: 'md'
+        },
+        icons: {
+            iconfont: 'md',
+        },
+        theme: {
+            dark: false,
+        },
+        themes: {
+            light: {
+                primary: "#4682b4",
+                secondary: "#b0bec5",
+                accent: "#8c9eff",
+                error: "#b71c1c",
+            },
+        },
+    }),
     store
 }).$mount('#app')
+
 

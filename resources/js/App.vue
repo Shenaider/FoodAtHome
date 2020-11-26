@@ -1,18 +1,60 @@
 <template>
+    <v-app>
+        <v-app-bar
+            app
+            color="primary"
+            dark
+        >
+            <div class="d-flex align-center">
+                <v-img
+                    alt="Vuetify Logo"
+                    class="shrink mr-2"
+                    contain
+                    src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+                    transition="scale-transition"
+                    width="40"
+                />
 
-    <div id="app">
-        <div id="nav">
-            <router-link to="/">Home</router-link> |
-            <template v-if="!authenticated">
-                <router-link to="/signin">Sign in</router-link> |
-            </template>
-            <template v-else>
-                <!-- router-link to="/account">{{ user.name }}</router-link> | -->
-                <a href="#" @click.prevent="signOut">Sign out</a>
-            </template>
-        </div>
-        <router-view/>
-    </div>
+                <v-img
+                    alt="Vuetify Name"
+                    class="shrink mt-1 hidden-sm-and-down"
+                    contain
+                    min-width="100"
+                    src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
+                    width="100"
+                />
+            </div>
+
+            <v-spacer></v-spacer>
+
+            <v-btn
+                :to="{ name: 'home'}"
+                text
+            >
+                <v-icon left>language</v-icon>
+                <span class="mr-2">Home</span>
+            </v-btn>
+            <v-btn
+                v-if="!authenticated"
+                :to="{ name: 'signin'}"
+                text
+            >
+                <v-icon left>perm_identity</v-icon>
+                <span class="mr-2">Sign in</span>
+            </v-btn>
+            <v-btn
+                v-else="!authenticated"
+                @click.prevent="signOut"
+                text
+            >
+                <v-icon left>power_settings_new</v-icon>
+                <span class="mr-2">Sign out</span>
+            </v-btn>
+        </v-app-bar>
+        <v-main>
+            <router-view></router-view>
+        </v-main>
+    </v-app>
 </template>
 
 <script>
@@ -21,6 +63,8 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
     name: 'App',
     mixins: [common],
+    components: {
+    },
     created () {},
     computed: {
         ...mapGetters({

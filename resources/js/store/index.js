@@ -9,7 +9,6 @@ import Vuex from 'vuex'
 //import feed from './modules/feed'
 //import generic from './modules/generic'
 //import group from './modules/group'
-import menu from './modules/menu'
 import auth from './auth'
 //import person from './modules/person'
 //import quotation from './modules/quotation'
@@ -21,7 +20,7 @@ Vue.use(Vuex)
 const debug = true
 
 export default new Vuex.Store({
-  modules: {
+    modules: {
       auth,
     //account,
     //business,
@@ -31,7 +30,6 @@ export default new Vuex.Store({
     //feed,
     //generic,
     //group,
-    menu,
     //person,
     //quotation,
     //reportAndContact,

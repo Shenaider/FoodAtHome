@@ -8,6 +8,7 @@
         <title>@yield('title')</title>
         <!-- Latest compiled and minified CSS & JS -->
         <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">
+        <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
         @yield('extrastyles')
         </head>
         <body>

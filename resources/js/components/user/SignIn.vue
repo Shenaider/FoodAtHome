@@ -1,19 +1,32 @@
 <template>
-    <form action="#" @submit.prevent="submit">
-        <div>
-            <label for="email">Email address</label>
-            <input type="text" name="email" id="email" v-model="form.email">
-        </div>
-        <div>
-            <label for="password">Password</label>
-            <input type="text" name="password" id="password" v-model="form.password">
-        </div>
-        <div>
-            <button type="submit">
-                Sign in
-            </button>
-        </div>
-    </form>
+    <v-card class="mx-auto my-12"
+            max-width="500"
+            elevation="2" outlined shaped tile>
+        <v-card-title>Login</v-card-title>
+        <v-card-text>
+            <v-form @submit.prevent="submit">
+                <v-container>
+                    <v-row>
+                        <v-col cols="12" md="12">
+                            <v-text-field v-model="form.email" label="Email" filled required></v-text-field>
+                        </v-col>
+                    </v-row>
+                    <v-row>
+                        <v-col cols="12" md="12">
+                            <v-text-field type="password" v-model="form.password" label="Password" filled required></v-text-field>
+                        </v-col>
+                    </v-row>
+                    <v-row>
+                    </v-row>
+                </v-container>
+            </v-form>
+        </v-card-text>
+        <v-card-actions>
+            <v-btn color="success" class="mr-4" @click="submit">
+                Submit
+            </v-btn>
+        </v-card-actions>
+    </v-card>
 </template>
 
 <script>
