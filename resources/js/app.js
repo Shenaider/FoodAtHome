@@ -5,10 +5,10 @@ import axios from 'axios'
 
 import Vuetify from 'vuetify'
 
-import AppComponent from './App.vue'
+import App from './App.vue'
 import './helpers/filters'
 import Helper from './helpers/Helpers.js'
-import router from './router'
+import Router from './router/index.js'
 import store from './store'
 
 const { times } = require('lodash')
@@ -22,19 +22,16 @@ axios.defaults.baseURL = 'http://foodathome.test'
 
 
 Vue.use(Moment, 'pt-br')
-Vue.use(Vuetify, {})
-Vue.use(Vuelidate, {})
+Vue.use(Vuetify)
+Vue.use(Vuelidate)
 
 Vue.prototype.$moment = Moment
 Vue.prototype.$helpers = Helper
 
-Vue.component('app',AppComponent)
-
-const app = new Vue({
-    el: '#app',
-    router,
-    store,
-    data: {},
-    render: h => h(AppComponent)
-})
+new Vue({
+    router: Router,
+    Vuetify,
+    render: h => h(App),
+    store
+}).$mount('#app')
 

@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Api\DepartmentController;
+use App\Http\Controllers\Api\ManagerController;
+use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\UserController;
 
 /*
@@ -16,17 +18,26 @@ use App\Http\Controllers\Api\UserController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::middleware('auth:sanctum')->get('managers', [ManagerController::class, 'index']);
+Route::middleware('auth:sanctum')->get('customers', [CustomerController::class, 'index']);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('/login', 'Auth\AuthController@login');
-Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get('/users', 'UserController@index');
-});
-Route::get('users',                 [UserController::class, 'index']);
-Route::get('users/emailavailable',  [UserController::class, 'emailAvailable']);
-Route::get('users/{user}',          [UserController::class, 'show']);
-Route::post('users',                [UserController::class, 'store']);
-Route::put('users/{user}',          [UserController::class, 'update']);
-Route::delete('users/{user}',       [UserController::class, 'destroy']);
+
+Route::get('managers/emailavailable',  [ManagerController::class, 'emailAvailable']);
+Route::get('managers/{manager}',          [ManagerController::class, 'show']);
+Route::post('managers',                [ManagerController::class, 'store']);
+Route::put('managers/{manager}',          [ManagerController::class, 'update']);
+Route::delete('managers/{manager}',       [ManagerController::class, 'destroy']);
+
+Route::get('customers/emailavailable',  [CustomerController::class, 'emailAvailable']);
+Route::get('customers/{customer}',          [CustomerController::class, 'show']);
+Route::post('customers',                [CustomerController::class, 'store']);
+Route::put('customers/{customer}',          [CustomerController::class, 'update']);
+Route::delete('customers/{customer}',       [CustomerController::class, 'destroy']);
+
+Route::post('login', [AuthController::class, 'login']);
+Route::middleware('auth:sanctum')->post('logout', [AuthController::class, 'logout']);
+
+Route::middleware('auth:sanctum')->get('users/me', [UserController::class, 'me']);

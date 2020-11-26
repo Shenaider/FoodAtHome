@@ -122244,7 +122244,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./App.vue */ "./resources/js/App.vue");
 /* harmony import */ var _helpers_filters__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./helpers/filters */ "./resources/js/helpers/filters.js");
 /* harmony import */ var _helpers_Helpers_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./helpers/Helpers.js */ "./resources/js/helpers/Helpers.js");
-/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./router */ "./resources/js/router/index.js");
+/* harmony import */ var _router_index_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./router/index.js */ "./resources/js/router/index.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
 
 
@@ -122266,20 +122266,18 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 axios__WEBPACK_IMPORTED_MODULE_3___default.a.defaults.withCredentials = true;
 axios__WEBPACK_IMPORTED_MODULE_3___default.a.defaults.baseURL = 'http://foodathome.test';
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(moment_moment__WEBPACK_IMPORTED_MODULE_0___default.a, 'pt-br');
-vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuetify__WEBPACK_IMPORTED_MODULE_4___default.a, {});
-vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuelidate__WEBPACK_IMPORTED_MODULE_2___default.a, {});
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuetify__WEBPACK_IMPORTED_MODULE_4___default.a);
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuelidate__WEBPACK_IMPORTED_MODULE_2___default.a);
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.prototype.$moment = moment_moment__WEBPACK_IMPORTED_MODULE_0___default.a;
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.prototype.$helpers = _helpers_Helpers_js__WEBPACK_IMPORTED_MODULE_7__["default"];
-vue__WEBPACK_IMPORTED_MODULE_1___default.a.component('app', _App_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
-var app = new vue__WEBPACK_IMPORTED_MODULE_1___default.a({
-  el: '#app',
-  router: _router__WEBPACK_IMPORTED_MODULE_8__["default"],
-  store: _store__WEBPACK_IMPORTED_MODULE_9__["default"],
-  data: {},
+new vue__WEBPACK_IMPORTED_MODULE_1___default.a({
+  router: _router_index_js__WEBPACK_IMPORTED_MODULE_8__["default"],
+  Vuetify: vuetify__WEBPACK_IMPORTED_MODULE_4___default.a,
   render: function render(h) {
     return h(_App_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
-  }
-});
+  },
+  store: _store__WEBPACK_IMPORTED_MODULE_9__["default"]
+}).$mount('#app');
 
 /***/ }),
 
@@ -122653,171 +122651,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _components_dashboard_Index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/dashboard/Index */ "./resources/js/components/dashboard/Index.vue");
-/* harmony import */ var _components_user_SignIn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/user/SignIn */ "./resources/js/components/user/SignIn.vue");
-
- //import AccountsAdd from '@/components/accounts/Add'
-//import AccountsEdit from '@/components/accounts/Edit'
-//import AccountsTableList from '@/components/accounts/partials/ShowAccountsTable'
-//import AccountShow from '@/components/accounts/Show'
-//import BusinessesList from '@/components/businesses/Index'
-//import BusinessShow from '@/components/businesses/Show'
-//import BusinessGoalsList from '@/components/commercial-goals/Index'
+/* harmony import */ var _components_dashboard_Index_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/dashboard/Index.vue */ "./resources/js/components/dashboard/Index.vue");
+/* harmony import */ var _components_user_SignIn_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/user/SignIn.vue */ "./resources/js/components/user/SignIn.vue");
 
 
- //import Calendar from '@/components/events/Calendar'
-//import GroupsTableList from '@/components/groups/partials/ShowGroupsTable'
-//import GroupShow from '@/components/groups/Show'
-//import AccountGroupPersonSearch from '@/components/partials/AccountGroupPersonSearch'
-//import PersonsAdd from '@/components/persons/Add'
-//import PersonsEdit from '@/components/persons/Edit'
-//import PersonsTableList from '@/components/persons/partials/ShowPersonsTable'
-//import PersonsShow from '@/components/persons/Show'
-//import ReportsAndContactsList from '@/components/reports-and-contacts/Index'
-//import TasksList from '@/components/tasks/Index'
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
+
+var routes = [{
+  path: '/',
+  name: 'home',
+  component: _components_dashboard_Index_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+}, {
+  path: '/signin',
+  name: 'signin',
+  component: _components_user_SignIn_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+}];
+/* harmony default export */ __webpack_exports__["default"] = (new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
-  base: process.env.BASE_URL,
-  routes: [{
-    path: '/',
-    name: 'home',
-    component: _components_dashboard_Index__WEBPACK_IMPORTED_MODULE_2__["default"]
-  }, {
-    path: '/signin',
-    name: 'signin',
-    component: _components_user_SignIn__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }
-  /** Businesses
-   {
-  path: '/businesses',
-  name: 'businessesList',
-  component: BusinessesList
-  },
-   {
-  path: '/businesses/:businessId(\\d+)',
-  name: 'businessShow',
-  component: BusinessShow
-  },
-   {
-  path: '/businesses/:businessId(\\d+)/persons/create',
-  name: 'businessPersonAdd',
-  component: PersonsAdd
-  },
-   {
-  path: '/businesses/:businessId(\\d+)/persons',
-  name: 'businessRelatedPersons',
-  component: PersonsTableList
-  },
-   /** ACCOUNTS
-   {
-  path: '/accounts',
-  component: AccountGroupPersonSearch,
-  children: [
-  {
-    path: '/',
-    name: 'accountsTableList',
-    component: AccountsTableList
-  },
-  {
-    path: '/persons',
-    name: 'personsTableList',
-    component: PersonsTableList
-  },
-  {
-    path: '/groups',
-    name: 'groupsTableList',
-    component: GroupsTableList
-  }
-  ]
-  },
-   {
-  path: '/accounts/create',
-  name: 'accountsAdd',
-  component: AccountsAdd
-  },
-   {
-  path: '/accounts/:accountId(\\d+)',
-  name: 'accountShow',
-  component: AccountShow
-  },
-   {
-  path: '/accounts/:accountId(\\d+)/edit',
-  name: 'accountsEdit',
-  component: AccountsEdit
-  },
-   {
-  path: '/accounts/:accountId(\\d+)/persons',
-  name: 'accountRelatedPersons',
-  component: PersonsTableList
-  },
-   {
-  path: '/accounts/:accountId(\\d+)/persons/create',
-  name: 'accountPersonAdd',
-  component: PersonsAdd
-  },
-   /** End Accounts
-   /** GROUPS
-   {
-  path: '/groups/:groupId(\\d+)',
-  name: 'groupShow',
-  component: GroupShow
-  },
-   {
-  path: '/groups/:groupId(\\d+)/accounts',
-  name: 'groupRelatedAccounts',
-  component: AccountsTableList
-  },
-   /** END groups
-   /** Persons
-   {
-  path: '/persons/create',
-  name: 'personAdd',
-  component: PersonsAdd
-  },
-   {
-  path: '/persons/:personId(\\d+)',
-  name: 'personsShow',
-  component: PersonsShow
-  },
-   {
-  path: '/persons/edit/:personId(\\d+)',
-  name: 'personsEdit',
-  component: PersonsEdit
-  },
-   {
-  path: '/persons/:personId(\\d+)/accounts',
-  name: 'personsRelatedAccounts',
-  component: AccountsTableList
-  },
-   /** End Persons
-   {
-  path: '/reports-and-contacts',
-  name: 'ReportsAndContactsList',
-  component: ReportsAndContactsList
-  },
-   {
-  path: '/calendar',
-  name: 'Calendar',
-  component: Calendar
-  },
-   {
-  path: '/tasks',
-  name: 'TasksList',
-  component: TasksList
-  },
-   {
-  path: '/commercial-goals',
-  name: 'businessGoals',
-  component: BusinessGoalsList
-  } */
-  ]
-});
-/* harmony default export */ __webpack_exports__["default"] = (router);
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
+  routes: routes
+}));
 
 /***/ }),
 
@@ -122877,7 +122733,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 3:
                 _context.next = 5;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/login', credentials);
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/login', credentials);
 
               case 5:
                 return _context.abrupt("return", dispatch('me'));
@@ -122899,7 +122755,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 dispatch = _ref2.dispatch;
                 _context2.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/logout');
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/logout').then(function (response) {
+                  console.log('User has logged out');
+                })["catch"](function (error) {
+                  console.log('Invalid Logout');
+                });
 
               case 3:
                 return _context2.abrupt("return", dispatch('me'));
@@ -122914,7 +122774,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     me: function me(_ref3) {
       var commit = _ref3.commit;
-      return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/user').then(function (response) {
+      return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/users/me').then(function (response) {
         commit('SET_AUTHENTICATED', true);
         commit('SET_USER', response.data);
       })["catch"](function () {
