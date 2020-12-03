@@ -18,12 +18,6 @@ use App\Http\Controllers\Api\UserController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::middleware('auth:sanctum')->get('managers', [ManagerController::class, 'index']);
-Route::middleware('auth:sanctum')->get('customers', [CustomerController::class, 'index']);
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 Route::get('managers/emailavailable',  [ManagerController::class, 'emailAvailable']);
 Route::get('managers/{manager}',          [ManagerController::class, 'show']);
@@ -39,5 +33,6 @@ Route::delete('customers/{customer}',       [CustomerController::class, 'destroy
 
 Route::post('login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->post('logout', [AuthController::class, 'logout']);
-
 Route::middleware('auth:sanctum')->get('users/me', [UserController::class, 'me']);
+Route::middleware('auth:sanctum')->get('managers/me', [ManagerController::class, 'index']);
+Route::middleware('auth:sanctum')->get('customers/me', [CustomerController::class, 'index']);

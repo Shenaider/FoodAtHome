@@ -57,4 +57,9 @@ class UserController extends Controller
         }
         return response()->json($totalEmail == 0);
     }
+
+    public function me(Request $request)
+    {
+        return $request->user();
+    }
 }

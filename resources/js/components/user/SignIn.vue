@@ -49,10 +49,8 @@ export default {
         ...mapActions({
             signIn: 'auth/signIn'
         }),
-
-        async submit () {
-            await this.signIn(this.form)
-
+        submit () {
+            this.signIn(this.form)
             this.$router.replace({ name: 'home' })
         }
     }

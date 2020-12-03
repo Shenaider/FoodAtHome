@@ -28,8 +28,8 @@ Vue.prototype.$moment = Moment
 Vue.prototype.$helpers = Helper
 
 const app =new Vue({
-    render: h => h(App),
     router: Router,
+    render: h => h(App),
     vuetify: new Vuetify({
         defaultAssets: {
             font: true,
