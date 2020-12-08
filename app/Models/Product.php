@@ -19,7 +19,6 @@ class Product
         'description',
         'photo_url',
         'price',
-        'deleted_at',
     ];
 
     protected $enumTypes = [

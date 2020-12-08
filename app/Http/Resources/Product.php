@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Manager extends JsonResource
+class Product extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,10 +17,10 @@ class Manager extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'email' => $this->email,
-            'age' => $this->age,
-            'department_id' => $this->department_id,
-            'department_name' => $this->department->name,
+            'type' => $this->type,
+            'description' => $this->description,
+            'photo_url' => $this->photo_url,
+            'price' => $this->price,
         ];
     }
 }

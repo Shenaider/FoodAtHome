@@ -3,22 +3,16 @@
         <h2>Edit User</h2>
         <form>
             <div class="form-group">
+                <label>Type</label>
+                <input type="text" class="form-control" v-model="user.type" />
+            </div>
+            <div class="form-group">
                 <label>Name</label>
                 <input type="text" class="form-control" v-model="user.name" />
             </div>
             <div class="form-group">
-                <label>Age</label>
-                <input type="text" class="form-control" v-model="user.age" />
-            </div>
-            <div class="form-group">
                 <label>Email</label>
                 <input type="text" class="form-control" v-model="user.email" />
-            </div>
-            <div class="form-group">
-                <label>Department</label>
-                <select class="form-control" v-model="user.department_id">
-                    <option v-for="deparment of deparments" v-bind:value="deparment.id"> {{department.name}}</option>
-                </select>
             </div>
             <div class="form-group">
                 <button class="btn btn-primary" @click.prevent="saveUser()">Save</button>
@@ -30,7 +24,7 @@
 
 <script>
 export default {
-    props:['user','departments'],
+    props:['user'],
     methods:{
         saveUser(){
             this.$emit('save-user')
@@ -40,8 +34,8 @@ export default {
         }
     },
     mounted () {
-        axios.get('api/departments').then(response=>{
-            this.departments = response.data.data;
+        axios.get('api/users').then(response=>{
+            this.users = response.data.data;
         });
     }
 }
